@@ -42,6 +42,8 @@
         <PaperPlane size="1.5rem"/>
         <span>{DateTime.fromISO(question.sentAt).toFormat('dd/LL/yyyy')}</span>
       </div>
+    {/if}
+    {#if question.messageLink}
       <a href={question.messageLink} target="_blank" class="flex w-max items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 hover:bg-[#dfebff] dark:hover:bg-[#2c3483] p-2 rounded-lg">
         <Discord size="1.5rem"/>
         <span class="whitespace-nowrap">Abrir no Discord</span>
