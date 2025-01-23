@@ -80,5 +80,3 @@
 <!-- TODO: REMAKE TOOLTIP -->
 <Tooltip offset={10} triggeredBy="#created">Criado em</Tooltip>
 <Tooltip offset={10} triggeredBy="#sent">Enviado em</Tooltip>
-
-<textarea name="" id="" rows=30>{JSON.stringify(question, null, 2)}</textarea>
