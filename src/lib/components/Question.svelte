@@ -67,7 +67,7 @@
             <span class="font-bold text-lg">{option.text}</span>
           </div>
           {#if option.votes?.toString()}
-            <div class="min-w-max text-right">{option.votes} votos</div>
+            <div class="min-w-max text-right">{option.votes} {option.votes > 1 ? 'votos' : 'voto'}</div>
           {/if}
         </div>
       </div>
