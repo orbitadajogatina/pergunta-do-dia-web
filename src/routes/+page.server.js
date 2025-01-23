@@ -1,5 +1,3 @@
-import { redirect, fail } from '@sveltejs/kit';
-
 export async function load({ cookies }) {
   const token = cookies.get('token');
   const options = {method: 'GET', headers: {Authorization: 'Bearer ' + token}};
