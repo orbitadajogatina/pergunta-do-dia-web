@@ -10,9 +10,9 @@
 <header class="fixed w-full z-40 p-2 backdrop-blur-lg bg-light-surface-400/20 dark:bg-dark-surface-500/20">
   <div class="container mx-auto flex flex-row justify-between">
     <a href="/">
-      <img src="/logo-with-text.png" alt="Logo Pergunta do Dia" class="h-10 hidden dark:sm:block">
-      <img src="/logo-with-text-alternative.png" alt="Logo Pergunta do Dia" class="h-10 hidden sm:block dark:hidden">
-      <img src="/logo-no-background.png" alt="Logo Pergunta do Dia" class="h-10 sm:hidden">
+      <img src="/logo-with-text.svg" alt="Logo Pergunta do Dia" class="h-10 hidden dark:sm:block">
+      <img src="/logo-with-text-alternative.svg" alt="Logo Pergunta do Dia" class="h-10 hidden sm:block dark:hidden">
+      <img src="/logo-no-background.svg" alt="Logo Pergunta do Dia" class="h-10 sm:hidden">
     </a>
     <div class="max-w-md w-full hidden md:block">
       <ButtonGroup class="w-full">

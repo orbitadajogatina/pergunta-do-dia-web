@@ -8,7 +8,8 @@ export default {
   darkMode: "class",
   theme: {
     fontFamily: {
-      sans: ['Inter', 'sans-serif']
+      sans: ['Inter', 'sans-serif'],
+      mono: ['monospace', 'monospace']
     },
     extend: {
       colors: {
