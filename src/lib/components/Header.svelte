@@ -7,8 +7,8 @@
   let searchQuery = $state('');
 </script>
 
-<header class="fixed w-full z-40 p-2 backdrop-blur-lg bg-light-surface-400/20 dark:bg-dark-surface-500/20">
-  <div class="container mx-auto flex flex-row justify-between">
+<header class="fixed w-full z-40 backdrop-blur-lg bg-light-surface-400/20 dark:bg-dark-surface-500/20">
+  <div class="container mx-auto p-2 flex flex-row justify-between">
     <a href="/">
       <img src="/logo-with-text.svg" alt="Logo Pergunta do Dia" class="h-10 hidden dark:sm:block">
       <img src="/logo-with-text-alternative.svg" alt="Logo Pergunta do Dia" class="h-10 hidden sm:block dark:hidden">
