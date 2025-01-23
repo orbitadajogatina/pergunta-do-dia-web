@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@emoji-mart/data": "^1.2.1",
 		"emoji-mart": "^5.6.0",
+		"luxon": "^3.5.0",
 		"svelte-ionicons": "^2.0.1"
 	}
 }

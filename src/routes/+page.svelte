@@ -2,7 +2,6 @@
   import Question from '$lib/components/Question.svelte';
   const { data } = $props();
   const { latestQuestion, stats, queue } = data;
-  console.log(latestQuestion)
 </script>
 
 <div class="flex flex-col lg:flex-row gap-4">
