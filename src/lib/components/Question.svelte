@@ -2,7 +2,7 @@
   import Create from 'svelte-ionicons/Create.svelte';
   import PaperPlane from 'svelte-ionicons/PaperPlane.svelte';
   import Discord from 'svelte-ionicons/LogoDiscord.svelte';
-  import { Avatar, Tooltip } from 'odj-svelte-ui';
+  import { Avatar, Tooltip, Badge } from 'odj-svelte-ui';
 	import { onMount } from 'svelte';
   let { data: question } = $props();
 
@@ -18,6 +18,11 @@
 </script>
 
 <div class="p-8 rounded-xl flex flex-col gap-6 bg-white dark:bg-dark-surface-700/20">
+  {#if question.status !== 3}
+    <div class="-my-2">
+      <Badge rounded large color={['yellow', 'red', 'primary'][question.status]}>{['Em análise', 'Recusada', 'Aprovada'][question.status]}</Badge>
+    </div>
+  {/if}
   <h1 class="font-extrabold text-4xl text-primary-700 dark:text-primary-400">dolore consequat sit proident amet in et incididunt occaecat mollit cupidatat velit non consectetur aliquip tempor aute incididunt et sed mollit repre?</h1>
   <div class="flex items-center text-light-surface-800 dark:text-dark-surface-200 gap-2 pb-2 -mb-2 overflow-y-auto">
     <a href="/users/" class="flex items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 hover:bg-primary-100 dark:hover:bg-primary-800 p-2 rounded-lg">
