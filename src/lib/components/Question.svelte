@@ -2,7 +2,7 @@
   import Create from 'svelte-ionicons/Create.svelte';
   import PaperPlane from 'svelte-ionicons/PaperPlane.svelte';
   import Discord from 'svelte-ionicons/LogoDiscord.svelte';
-  import { Avatar } from 'odj-svelte-ui';
+  import { Avatar, Tooltip } from 'odj-svelte-ui';
 	import { onMount } from 'svelte';
   let { data: question } = $props();
 
@@ -19,29 +19,24 @@
 
 <div class="p-8 rounded-xl flex flex-col gap-6 bg-white dark:bg-dark-surface-700/20">
   <h1 class="font-extrabold text-4xl text-primary-700 dark:text-primary-400">dolore consequat sit proident amet in et incididunt occaecat mollit cupidatat velit non consectetur aliquip tempor aute incididunt et sed mollit repre?</h1>
-  <div class="flex items-center flex-wrap text-light-surface-800 dark:text-dark-surface-200 gap-4">
-    <div class="flex items-center gap-2">
+  <div class="flex items-center text-light-surface-800 dark:text-dark-surface-200 gap-2 pb-2 -mb-2 overflow-y-auto">
+    <a href="/users/" class="flex items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 hover:bg-primary-100 dark:hover:bg-primary-800 p-2 rounded-lg">
       <Avatar size="xs" href="/users/"/>
-      <a href="/users/" class="hover:underline truncate">Loremzinho</a>
-    </div>
-    <div class="h-5 border border-r-light-surface-800 dark:border-r-dark-surface-200"></div>
-    <div class="flex items-center gap-2" title="Criado em">
+      <span class="max-w-48 truncate">Loremzinho</span>
+    </a>
+    <div class="flex items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 p-2 rounded-lg" id="created">
       <Create size="1.5rem"/>
       <span>21/01/2023</span>
     </div>
     {#if question.sentAt}
-      <div class="h-5 border border-r-light-surface-800 dark:border-r-dark-surface-200"></div>
-      <div class="flex items-center gap-2" title="Enviado em">
+      <div class="flex items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 p-2 rounded-lg" id="sent">
         <PaperPlane size="1.5rem"/>
         <span>21/01/2025</span>
       </div>
-      <div class="h-5 border border-r-light-surface-800 dark:border-r-dark-surface-200"></div>
-      <div class="flex items-center gap-2">
-        <a href="/">
-          <Discord size="1.5rem"/>
-        </a>
-        <a href="/" class="hover:underline">Abrir no Discord</a>
-      </div>
+      <a href="/" target="_blank" class="flex w-max items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 hover:bg-[#dfebff] dark:hover:bg-[#2c3483] p-2 rounded-lg">
+        <Discord size="1.5rem"/>
+        <span class="whitespace-nowrap">Abrir no Discord</span>
+      </a>
     {/if}
   </div>
   <p class="text-light-surface-900 dark:text-dark-surface-100">magna ex lorem qui fugiat laborum veniam laboris aute dolore cillum veniam non mollit nulla velit cillum lorem adipiscing sit sunt aliquip commodo eiusmod Excepteur consectetur non nulla mollit deserunt aute elit tempor officia in aliquip esse pariatur culpa do nostrud eiusmod adipiscing quis reprehenderit cillum sed irure ea culpa reprehenderit te</p>
@@ -58,5 +53,9 @@
     </div>
   </div>
 </div>
+
+<!-- TODO: REMAKE TOOLTIP -->
+<Tooltip offset={10} triggeredBy="#created">Criado em</Tooltip>
+<Tooltip offset={10} triggeredBy="#sent">Enviado em</Tooltip>
 
 <textarea name="" id="">{JSON.stringify(question, null, 2)}</textarea>
