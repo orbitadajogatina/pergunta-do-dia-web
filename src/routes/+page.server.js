@@ -11,5 +11,5 @@ export async function load({ cookies }) {
   const queueResponse = await fetch('https://pergunta-do-dia.onrender.com/api/v1/queue', options);
   const queue = await queueResponse.json();
 
-  return {latestQuestion, stats, queue};
+  return { latestQuestion, stats, queue, token };
 }
