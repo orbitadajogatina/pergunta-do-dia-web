@@ -19,8 +19,11 @@
 	},
 	"dependencies": {
 		"@emoji-mart/data": "^1.2.1",
+		"@skeletonlabs/floating-ui-svelte": "^0.3.9",
+		"async-g-i-s": "^1.5.5",
 		"emoji-mart": "^5.6.0",
 		"luxon": "^3.5.0",
+		"svelte-dnd-action": "^0.9.55",
 		"svelte-ionicons": "^2.0.1"
 	}
 }

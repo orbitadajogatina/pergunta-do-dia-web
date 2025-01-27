@@ -77,6 +77,6 @@
   </div>
 </div>
 
-<!-- TODO: REMAKE TOOLTIP & PAGINATION & SELECT -->
+<!-- TODO: REMAKE TOOLTIP & PAGINATION & SELECT & MODAL & TEXTAREA & TABS -->
 <Tooltip offset={10} triggeredBy="#created">Criado em</Tooltip>
 <Tooltip offset={10} triggeredBy="#sent">Enviado em</Tooltip>
