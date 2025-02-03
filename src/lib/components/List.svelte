@@ -28,7 +28,7 @@
 </script>
 
 <div class="flex flex-col gap-4">
-  <div class="mx-auto max-w-full overflow-x-auto text-center">
+  <div class="mx-auto max-w-full">
     <Pagination {pages} {previous} {next} onclick={changePage}>
       {#snippet prevContent()}
         <span class="sr-only">Previous</span>

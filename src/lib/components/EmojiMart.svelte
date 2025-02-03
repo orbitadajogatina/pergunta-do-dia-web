@@ -10,8 +10,8 @@
   const dispatch = createEventDispatcher();
 
   onMount(async () => {
+    console.log('loading picker...')
     const EmojiMart = await import('emoji-mart');
-    const data = await import('@emoji-mart/data');
     
     picker = new EmojiMart.Picker({
       onClickOutside: () => {
@@ -21,7 +21,6 @@
         dispatch("select", emoji);
       },
       theme: localStorage.theme || 'auto',
-      data: data.default,
       ...options
     });
     emojiPickerEl.appendChild(picker);

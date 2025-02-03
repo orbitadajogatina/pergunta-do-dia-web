@@ -4,7 +4,8 @@
   import Search from './Editor.Search.svelte';
   import SearchIcon from 'svelte-ionicons/Search.svelte';
 
-  let question = $state({ options: [] });
+  let { questionData = { question: "", description: "", footer: "", image: "", options: [] } } = $props();
+  let question = $state(questionData);
 
   // FLOATING UI
   import {

@@ -1,6 +1,6 @@
 <script>
   import { Input, Button, Spinner, input } from 'odj-svelte-ui';
-  import { onMount } from 'svelte';
+  import { getContext, onMount } from 'svelte';
   import Search from 'svelte-ionicons/Search.svelte';
   
   let { includeDollarSign = false, result = $bindable(), otherClasses, options } = $props();
@@ -8,12 +8,15 @@
   let query = $state();
   let inputValue = $state();
 
+  const token = getContext('token');
+
   async function getImages(query) {
     const requestOptions = {
       method: 'POST',
       body: JSON.stringify({query, searchOptions: options}),
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + token
 			}
     };
     const imagesResponse = await fetch('/searchImages', requestOptions);
@@ -22,7 +25,7 @@
   }
 </script>
 
-<div class="flex flex-row GAP-2">
+<div class="flex flex-row gap-2">
   <Input type="search" placeholder="jabuticaba" bind:value={inputValue}/>
   <Button onclick={() => query = inputValue}>
     <Search size="1.2rem"/>

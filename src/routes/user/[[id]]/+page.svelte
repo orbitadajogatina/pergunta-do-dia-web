@@ -1,5 +1,4 @@
 <script>
-  
   import EmojiMart from '$lib/components/EmojiMart.svelte';
 </script>
 

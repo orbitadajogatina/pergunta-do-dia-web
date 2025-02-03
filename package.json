@@ -20,6 +20,7 @@
 	"dependencies": {
 		"@emoji-mart/data": "^1.2.1",
 		"@skeletonlabs/floating-ui-svelte": "^0.3.9",
+		"@twemoji/api": "^15.1.0",
 		"async-g-i-s": "^1.5.5",
 		"emoji-mart": "^5.6.0",
 		"luxon": "^3.5.0",

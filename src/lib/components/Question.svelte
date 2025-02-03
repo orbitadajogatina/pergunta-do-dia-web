@@ -7,18 +7,8 @@
 	import { onMount } from 'svelte';
   import { DateTime } from 'luxon';
   
-  let { data: question } = $props();
+  let { data: question, loadEmojis = true } = $props();
   let totalVotes = question.options.reduce((previous, current, index) => previous + (current.votes || 0), 0);
-
-  onMount(async () => {
-    console.log('loading emojis...');
-    const EmojiMart = await import('emoji-mart');
-    const {init} = EmojiMart;
-    init({ data: async () => {
-      const response = await fetch('https://cdn.jsdelivr.net/npm/@emoji-mart/data')
-      return response.json();
-    }});
-  })
 </script>
 
 <div class="p-8 rounded-xl flex flex-col gap-6 bg-white dark:bg-dark-surface-700/20">
