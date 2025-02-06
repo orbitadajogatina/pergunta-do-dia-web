@@ -2,6 +2,7 @@
   import { Button, Input, Spinner } from 'odj-svelte-ui';
   import Question from '$lib/components/Question.svelte';
   import List from '$lib/components/List.svelte';
+  import { getQuestions } from '$lib/utils.js';
   import Shuffle from 'svelte-ionicons/Shuffle.svelte';
   import Calendar from 'svelte-ionicons/Calendar.svelte';
 
@@ -11,33 +12,14 @@
   let queryQuestionByID = $state();
   let random = $state(false);
 
-  async function getQuestions() {
-    let allQuestions = [];
-    let page = 0;
-
-    const options = {method: 'GET', headers: {Authorization: 'Bearer ' + token}};
-
-    while (page >= 0) {
-      const questionsResponse = await fetch(`https://pergunta-do-dia.onrender.com/api/v1/questions?page=${page}`, options);
-      const { questions, count } = await questionsResponse.json();
-
-      allQuestions = allQuestions.concat(questions);
-      if (count < 500) {
-        page = -1;
-      } else {
-        page++;
-      }
-    }
-
-    if (random) allQuestions = [...allQuestions].sort(() => Math.random() - 0.5);
-
-    return allQuestions;
-  }
-
   function shuffleQuestions() {
     random = random ? false : true;
   }
 </script>
+
+<svelte:head>
+  <title>Pergunta do Dia Web</title>
+</svelte:head>
 
 <div class="flex flex-col lg:flex-row gap-4">
   <div class="flex flex-col gap-1 lg:w-3/4">
@@ -65,7 +47,7 @@
       <Input type="text" class="w-max" placeholder="ID da mensagem" bind:value={queryQuestionByID}/>
     </div>
     {#key random}
-      {#await getQuestions()}
+      {#await getQuestions(token, random)}
         <div class="mx-auto">
           <Spinner/>
         </div>

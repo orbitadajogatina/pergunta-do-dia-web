@@ -4,4 +4,8 @@
   const { questions } = data;
 </script>
 
+<svelte:head>
+  <title>Você faz pesquisas?</title>
+</svelte:head>
+
 <List {questions}/>

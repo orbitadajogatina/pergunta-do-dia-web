@@ -15,7 +15,7 @@ export async function load({ cookies, params, parent }) {
 
   for (let index = 0; index < question.options.length; index++) {
     const option = question.options[index];
-    option.id = new Date().getTime() + (1000 * index);
+    option.id = crypto.randomUUID();
   }
 
   return { question, token };

@@ -4,8 +4,8 @@
   import Emoji from '$lib/components/Emoji.svelte';
   import { setContext } from 'svelte';
 
+  let questionData = $state({ question: "", description: "", footer: "", image: "", options: [] });
   let template = $state('blank');
-  let templateOptions = $state();
   let page = $state('templates');
   let params = $state(5);
 
@@ -14,7 +14,7 @@
       title: 'Em branco',
       id: 'blank',
       emojis: ['📄'],
-      options: () => undefined
+      options: () => ({ question: "", description: "", footer: "", image: "", options: [] })
     },
     yesAndNo: {
       title: 'Sim e Não',
@@ -22,8 +22,8 @@
       emojis: ['👍', '👎'],
       options: () => ({
         options: [
-          { emoji: '👍', text: 'Sim', id: (new Date().getTime()) },
-          { emoji: '👎', text: 'Não', id: (new Date().getTime() + 1000) }
+          { emoji: '👍', text: 'Sim', id: crypto.randomUUID() },
+          { emoji: '👎', text: 'Não', id: crypto.randomUUID() }
         ]
       })
     },
@@ -33,11 +33,11 @@
       emojis: ['⭐'],
       options: () => ({
         options: [
-          { emoji: '##', text: 'Péssimo', id: (new Date().getTime()) },
-          { emoji: '##', text: 'Ruim', id: (new Date().getTime() + 1000) },
-          { emoji: '##', text: 'Razoável', id: (new Date().getTime() + 2000) },
-          { emoji: '##', text: 'Bom', id: (new Date().getTime() + 3000) },
-          { emoji: '##', text: 'Ótimo', id: (new Date().getTime() + 4000) }
+          { emoji: '##', text: 'Péssimo', id: crypto.randomUUID() },
+          { emoji: '##', text: 'Ruim', id: crypto.randomUUID() },
+          { emoji: '##', text: 'Razoável', id: crypto.randomUUID() },
+          { emoji: '##', text: 'Bom', id: crypto.randomUUID() },
+          { emoji: '##', text: 'Ótimo', id: crypto.randomUUID() }
         ]
       })
     },
@@ -47,8 +47,8 @@
       emojis: ['❔', '⛔'],
       options: () => ({
         options: [
-          { emoji: '❔', text: 'Outro', id: (new Date().getTime()) },
-          { emoji: '⛔', text: 'Nunca', id: (new Date().getTime() + 1000) }
+          { emoji: '❔', text: 'Outro', id: crypto.randomUUID() },
+          { emoji: '⛔', text: 'Nunca', id: crypto.randomUUID() }
         ]
       })
     },
@@ -60,7 +60,7 @@
         options: Array.from({ length: Number(params) }, (_, index) => ({
           emoji: '##',
           text: String(index + 1),
-          id: new Date().getTime() + (1000 * index)
+          id: crypto.randomUUID()
         }))
       })
     }
@@ -75,9 +75,10 @@
 </svelte:head>
 
 {#if page === 'editor'}
-  <form action="" class="flex flex-col gap-2">
+  <form method="POST" class="flex flex-col gap-2">
     <h1 class="text-3xl font-bold text-primary-700 dark:text-primary-400">Nova pergunta</h1>
-    <Editor questionData={templateOptions}/>  
+    <Editor bind:questionData={questionData}/>
+    <input type="hidden" name="options" value={JSON.stringify(questionData?.options)}>
     <Button type="submit" class="mt-2">Mandar pergunta pra análise</Button>
   </form>
 {:else}
@@ -106,6 +107,6 @@
         </div>
       </Radio>
     </div>
-    <Button class="mt-2" disabled={!template} onclick={() => {page = 'editor'; templateOptions = templates[template].options(params);}}>Criar pergunta</Button>
+    <Button class="mt-2" disabled={!template} onclick={() => {page = 'editor'; questionData = templates[template].options(params);}}>Criar pergunta</Button>
   </div>
 {/if}

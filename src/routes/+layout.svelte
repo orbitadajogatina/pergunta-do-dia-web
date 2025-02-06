@@ -9,7 +9,10 @@
 	let hideHeaderAndFooter = $derived(['/login'].includes($page.url.pathname));
 	let totalFreeSpace = $derived(['/login'].includes($page.url.pathname));
 </script>
-<title>Pergunta do Dia Web</title>
+
+<svelte:head>
+  <title>Pergunta do Dia Web</title>
+</svelte:head>
 
 {#if !hideHeaderAndFooter}
   <Header {user}/>

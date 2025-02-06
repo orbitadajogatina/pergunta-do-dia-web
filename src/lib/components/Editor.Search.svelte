@@ -3,10 +3,9 @@
   import { getContext, onMount } from 'svelte';
   import Search from 'svelte-ionicons/Search.svelte';
   
-  let { includeDollarSign = false, result = $bindable(), otherClasses, options } = $props();
+  let { includeDollarSign = false, result = $bindable(), otherClasses, options, inputValue } = $props();
   
   let query = $state();
-  let inputValue = $state();
 
   const token = getContext('token');
 

@@ -4,7 +4,7 @@
   import Search from './Editor.Search.svelte';
   import SearchIcon from 'svelte-ionicons/Search.svelte';
 
-  let { questionData = { question: "", description: "", footer: "", image: "", options: [] } } = $props();
+  let { questionData = $bindable({ question: "", description: "", footer: "", image: "", options: [] }) } = $props();
   let question = $state(questionData);
 
   // FLOATING UI
@@ -52,7 +52,6 @@
   const interactions = useInteractions([role, click, dismiss]);
 </script>
 
-<textarea rows=4>{JSON.stringify(question)}</textarea>
 <div class="flex flex-col gap-2">
   <Label for="question" class="space-y-1">
     <span>Pergunta</span>

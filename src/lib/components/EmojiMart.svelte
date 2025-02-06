@@ -37,4 +37,4 @@
   });
 </script>
 
-<div on:click|preventDefault|stopPropagation bind:this={emojiPickerEl} />
+<div class={$$props.class} on:click|preventDefault|stopPropagation bind:this={emojiPickerEl} />

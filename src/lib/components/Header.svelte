@@ -1,5 +1,5 @@
 <script>
-  import { Darkmode, Avatar, Input, Button, ButtonGroup } from 'odj-svelte-ui';
+  import { Avatar, Input, Button, ButtonGroup } from 'odj-svelte-ui';
   import Search from 'svelte-ionicons/Search.svelte';
   import Add from 'svelte-ionicons/AddCircleOutline.svelte';
   import { goto } from '$app/navigation';
@@ -24,7 +24,6 @@
       </ButtonGroup>
     </form>
     <div class="flex flex-row items-center gap-4">
-      <Darkmode/>
       <a href="/new" class="text-light-surface-700 hover:text-primary-600 dark:text-dark-surface-100 dark:hover:text-dark-surface-400">
         <Add class="outline-none w-7 h-7"/>
       </a>

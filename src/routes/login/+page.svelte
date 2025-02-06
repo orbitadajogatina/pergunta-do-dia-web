@@ -3,6 +3,10 @@
 	let { form } = $props();
 </script>
 
+<svelte:head>
+  <title>Pergunta do Dia Web</title>
+</svelte:head>
+
 <div class="relative h-full w-full">
   <div class="absolute inset-0 bg-center bg-cover brightness-100 dark:brightness-[0.45] bg-[url('/background.png')]"></div>
   <div class="flex flex-row items-center h-full p-2">

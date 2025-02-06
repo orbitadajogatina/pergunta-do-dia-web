@@ -10,7 +10,7 @@
   let { value = $bindable([]) } = $props();
 
   function addOption() {
-    value.push({ emoji: null, text: null, id: (new Date().getTime()) });
+    value.push({ emoji: null, text: null, id: crypto.randomUUID() });
   }
 
   function removeOption(id) {
@@ -28,7 +28,7 @@
     <section class="flex flex-col gap-2"  use:dragHandleZone={{items: value, flipDurationMs, dropTargetStyle: {outline: 'rgba(255, 255, 255, 0) solid 0px'}}} onconsider={saveOptionsOrder} onfinalize={saveOptionsOrder}>
       {#each value as option (option.id)}
         <div class="rounded-lg p-2 border border-light-surface-300 dark:border-dark-surface-600 bg-white dark:bg-dark-surface-700 flex flex-row items-center gap-2 min-h-10 outline-none" animate:flip={{duration: flipDurationMs}}>
-          <Picker bind:emoji={option.emoji}/>
+          <Picker bind:emoji={option.emoji} text={option.text}/>
           <Input bind:value={option.text} class="dark:border-dark-surface-500 dark:bg-dark-surface-600" placeholder="Texto da Opção" tabindex=1/>
           <button type="button" onclick={() => removeOption(option.id)}>
             <Close size="1.2rem" class="outline-none"/>

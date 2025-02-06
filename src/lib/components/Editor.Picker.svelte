@@ -6,7 +6,7 @@
   import EmojiMart from './EmojiMart.svelte';
   import Search from './Editor.Search.svelte';
 
-  let { emoji = $bindable() } = $props();
+  let { emoji = $bindable(), text } = $props();
   let imageURLValue = $state();
 
   // FLOATING UI
@@ -69,15 +69,16 @@
     bind:this={floating.elements.floating}
     style={floating.floatingStyles}
     {...interactions.getFloatingProps()}
-    class="max-w-[75%] lg:max-w-[45%] xl:max-w-[30%] p-2 rounded-lg shadow-lg border border-light-surface-300 dark:border-light-surface-600 bg-white/80 dark:bg-dark-surface-800/80 backdrop-blur-lg overflow-x-auto"
+    class="max-w-[75%] lg:max-w-[45%] xl:max-w-[30%] px-2 pb-2 rounded-lg shadow-lg border border-light-surface-300 dark:border-light-surface-600 bg-white/80 dark:bg-dark-surface-800/80 backdrop-blur-lg overflow-x-auto"
     transition:fade={{ duration: 200 }}
   >
-    <Tabs tabStyle="pill">
+    <Tabs tabStyle="underline">
       <TabItem class="w-full" open>
         {#snippet titleSlot()}Emojis{/snippet}
         <EmojiMart
+          class="flex flex-row justify-center mt-4 mb-2"
           on:select={(ev) => handleEmojiPicked(ev.detail)}
-          options={{ set: "twitter", locale: "pt", navPosition: "bottom", previewPosition: "none", skinTonePosition: "preview", theme: "light" }}
+          options={{ set: "twitter", locale: "pt", navPosition: "bottom", previewPosition: "none", skinTonePosition: "preview" }}
         />
       </TabItem>
       <TabItem class="w-full">
@@ -91,11 +92,11 @@
       </TabItem>
       <TabItem class="w-full">
         {#snippet titleSlot()}Pesquisar{/snippet}
-        <Search includeDollarSign otherClasses="max-h-56" options={{"tbs": "ic:trans"}} bind:result={emoji}/>
+        <Search includeDollarSign otherClasses="max-h-56" options={{"tbs": "ic:trans"}} inputValue={text} bind:result={emoji}/>
       </TabItem>
       <TabItem class="w-full">
         {#snippet titleSlot()}Numeração{/snippet}
-        <Button onclick={() => emoji = '##'} class="w-full">Numerar essa opção dinamicamente</Button>
+        <Button onclick={() => emoji = '##'} class="w-full border border-transparent">Numerar essa opção dinamicamente</Button>
       </TabItem>
     </Tabs>
   </div>

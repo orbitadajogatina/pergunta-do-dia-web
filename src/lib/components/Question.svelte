@@ -19,7 +19,7 @@
   {/if}
   <h1 class="font-extrabold text-4xl text-primary-700 dark:text-primary-400">{question.question}</h1>
   <div class="flex items-center text-light-surface-800 dark:text-dark-surface-200 gap-2 pb-2 -mb-2 overflow-y-auto">
-    <a href="/users/{question.author.id}" class="flex items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 hover:bg-primary-100 dark:hover:bg-primary-800 p-2 rounded-lg">
+    <a href="/user/{question.author.id}" class="flex items-center gap-2 bg-light-surface-100 dark:bg-dark-surface-700/20 hover:bg-primary-100 dark:hover:bg-primary-800 p-2 rounded-lg">
       <Avatar size="xs" src={question.author.avatarURL}/>
       <span class="max-w-48 truncate">{question.author.globalName}</span>
     </a>

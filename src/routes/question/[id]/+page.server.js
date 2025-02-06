@@ -9,5 +9,5 @@ export async function load({ cookies, params }) {
   
   if (question.error) return error(questionResponse.status, { message: question.error });
 
-  return { question };
+  return { question, token };
 }
