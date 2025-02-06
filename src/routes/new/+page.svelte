@@ -104,7 +104,7 @@
     <div class="grid gap-3" style="grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));">
       {#each Object.values(templates).filter(e => !['count'].includes(e.id)) as templateData}
         <Radio custom name="template" value={templateData.id} bind:group={template} required>
-          <div class="w-full flex flex-col items-center justify-center gap-2 border dark:border-dark-surface-600/80 dark:bg-dark-surface-800/20 shadow-md p-6 rounded-xl cursor-pointer peer-checked:ring-1 peer-checked:outline-none peer-checked:border-primary-500 peer-checked:ring-primary-500 dark:peer-checked:border-primary-500 dark:peer-checked:ring-primary-500 peer-checked:bg-white dark:peer-checked:bg-dark-surface-600/40 h-full">
+          <div class="w-full flex flex-col items-center justify-center gap-2 border bg-light-surface-50 dark:border-dark-surface-600/80 dark:bg-dark-surface-800/20 shadow-md p-6 rounded-xl cursor-pointer peer-checked:ring-1 peer-checked:outline-none peer-checked:border-primary-500 peer-checked:ring-primary-500 dark:peer-checked:border-primary-500 dark:peer-checked:ring-primary-500 peer-checked:bg-white dark:peer-checked:bg-dark-surface-600/40 h-full">
             <div class="flex flex-row gap-0.5">
               {#each templateData.emojis as emoji}
                 <Emoji {emoji}/>
@@ -115,7 +115,7 @@
         </Radio>
       {/each}
       <Radio custom name="template" value="count" bind:group={template} required>
-        <div class="w-full flex flex-col items-center justify-center gap-2 border dark:border-dark-surface-600/80 dark:bg-dark-surface-800/20 shadow-md p-6 rounded-xl cursor-pointer peer-checked:ring-1 peer-checked:outline-none peer-checked:border-primary-500 peer-checked:ring-primary-500 dark:peer-checked:border-primary-500 dark:peer-checked:ring-primary-500 peer-checked:bg-white dark:peer-checked:bg-dark-surface-600/40 h-full">
+        <div class="w-full flex flex-col items-center justify-center gap-2 border bg-light-surface-50 dark:border-dark-surface-600/80 dark:bg-dark-surface-800/20 shadow-md p-6 rounded-xl cursor-pointer peer-checked:ring-1 peer-checked:outline-none peer-checked:border-primary-500 peer-checked:ring-primary-500 dark:peer-checked:border-primary-500 dark:peer-checked:ring-primary-500 peer-checked:bg-white dark:peer-checked:bg-dark-surface-600/40 h-full">
           <Emoji emoji="#️⃣"/>
           <div class="flex flex-row items-center gap-1">
             <span class="font-semibold text-base text-primary-700 dark:text-primary-400">Numeração: de 1 a </span>
