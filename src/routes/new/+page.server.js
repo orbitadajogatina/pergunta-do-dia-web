@@ -11,6 +11,7 @@ function transformFormDataIntoBodyToRequest(data) {
   let normalizedOptions = [];
   for (let { emoji, text } of JSON.parse(options)) {
     // const serverEmoji = emoji.match(/^<a?:.+?:\d{18}>/u);
+    if (!emoji || !text) throw("Couldn't parse option because it's missing emoji or text.")
     const imageEmojiURL = emoji.match(/\$\[Imagem\]\((.*?)\)\$/);
     if (imageEmojiURL) emoji = '$' + imageEmojiURL[1] + '$';
 
@@ -25,27 +26,29 @@ export const actions = {
     const token = cookies.get('token');
 		const data = await request.formData();
 
-    const options = {
-      method: 'POST',
-      headers: {
-        Authorization: 'Bearer ' + token,
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(transformFormDataIntoBodyToRequest(data))
-    };
+    let question;
 
     try {
-      const questionResponse = await fetch('https://pergunta-do-dia.onrender.com/api/v1/questions', options);
-      let question = await questionResponse.json();
-
-      if (question.error) throw { ...question, status: questionResponse.status };
-
-      redirect(303, '/question/' + question.id);
+      const options = {
+        method: 'POST',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(transformFormDataIntoBodyToRequest(data))
+      };
   
-      return {success: true};
-    } catch (err) {
-      console.error(err)
-      return fail((err.status || 500), { message: (err.error || err.toString()) });
+      const questionResponse = await fetch('https://pergunta-do-dia.onrender.com/api/v1/questions', options);
+      question = await questionResponse.json();
+
+      if (question.error) return fail(questionResponse.status, { message: question.error.replace('Error', 'Erro') });
+    } catch (error) {
+      return fail(500, { message: 'Erro: ' + error.toString() });
     }
+
+    const similarQuery = question.similarQuestions.length ? `?similar=${question.similarQuestions.map(e => e.id).join(',')}` : '';
+    redirect(303, `/question/${question.id}${similarQuery}`);
+
+    return {success: true};
   }
 }
