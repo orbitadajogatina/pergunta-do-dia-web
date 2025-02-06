@@ -2,8 +2,9 @@
   import { Button, Modal, Spinner, uiHelpers } from 'odj-svelte-ui';
   import Question from '$lib/components/Question.svelte';
   import { goto } from '$app/navigation';
+  import List from '$lib/components/List.svelte';
   const { data } = $props();
-  const { question, user, token } = data;
+  const { question, user, similarQuestions, token } = data;
 
   const modalConfirmDelete = uiHelpers();
   let modalStatus = $state(false);
@@ -34,6 +35,13 @@
 <svelte:head>
   <title>{question.question}</title>
 </svelte:head>
+
+{#if similarQuestions.length > 0}
+  <div class="font-semibold text-primary-600 dark:text-dark-surface-200 text-sm mb-1">PERGUNTAS PARECIDAS</div>
+  <div class="mb-2 pb-2 border-b dark:border-dark-surface-700/40">
+    <List questions={similarQuestions} paginationComponents={false}/>
+  </div>  
+{/if}
 
 {#if question.status !== 3 && question.author.id === user.id}
   <div class="flex flex-row gap-2 mb-2 justify-end">

@@ -4,7 +4,7 @@
   import ChevronBack from 'svelte-ionicons/ChevronBack.svelte';
   import ChevronForward from 'svelte-ionicons/ChevronForward.svelte';
 
-  let { questions, size = $bindable(30), page = $bindable(0) } = $props();
+  let { questions, size = $bindable(30), page = $bindable(0), paginationComponents = true } = $props();
   const sizes = [{value: 7, name: 7},{value: 15, name: 15}, {value: 30, name: 30}, {value: 60, name: 60}, {value: 90, name: 90}, {value: 180, name: 180}, {value: 365, name: 365}]
 
   let pages = $derived(Array.from({ length: Math.ceil(questions.length / size) }, (_, i) => ({
@@ -28,18 +28,20 @@
 </script>
 
 <div class="flex flex-col gap-4">
-  <div class="mx-auto max-w-full">
-    <Pagination {pages} {previous} {next} onclick={changePage}>
-      {#snippet prevContent()}
-        <span class="sr-only">Previous</span>
-        <ChevronBack class="h-5 w-5" />
-      {/snippet}
-      {#snippet nextContent()}
-        <span class="sr-only">Next</span>
-        <ChevronForward class="h-5 w-5" />
-      {/snippet}
-    </Pagination>
-  </div>
+  {#if paginationComponents}
+    <div class="mx-auto max-w-full">
+      <Pagination {pages} {previous} {next} onclick={changePage}>
+        {#snippet prevContent()}
+          <span class="sr-only">Previous</span>
+          <ChevronBack class="h-5 w-5" />
+        {/snippet}
+        {#snippet nextContent()}
+          <span class="sr-only">Next</span>
+          <ChevronForward class="h-5 w-5" />
+        {/snippet}
+      </Pagination>
+    </div>
+  {/if}
   
   <div class="flex flex-col gap-2">
     {#each questions.slice(page * size, size * (page + 1)) as question}
@@ -55,5 +57,8 @@
     {/each}
   </div>
   
-  <div class="text-center w-full text-sm mx-auto">Exibindo {questions.slice(page * size, size * (page + 1)).length} de <Select size="sm" class="w-16 inline" placeholder="Número de itens por página..." items={sizes} bind:value={size} onchange={() => page = 0}/> perguntas por página</div>
+
+  {#if paginationComponents}
+    <div class="text-center w-full text-sm mx-auto">Exibindo {questions.slice(page * size, size * (page + 1)).length} de <Select size="sm" class="w-16 inline" placeholder="Número de itens por página..." items={sizes} bind:value={size} onchange={() => page = 0}/> perguntas por página</div>
+  {/if}
 </div>
