@@ -52,7 +52,7 @@
   <div class="flex flex-col gap-3">
     {#each question.options as option}
       <div class="relative rounded-lg min-h-10 bg-light-surface-200 dark:bg-[#262b29]">
-        <div class="absolute top-0 left-0 h-full rounded-lg z-0 bg-primary-300 dark:bg-primary-600" style="width: {option.votes/totalVotes * 100}%" id="progress"></div>
+        <div class="absolute top-0 left-0 h-full rounded-lg z-0 bg-primary-300 dark:bg-primary-600" style="width: {option.votes/totalVotes * 100}%"></div>
         <div class="relative z-10 flex flex-row items-center gap-1.5 justify-between p-3 rounded-lg">
           <div class="flex flex-row items-center gap-3 min-h-10">
             <Emoji emoji={option.emoji}/>
