@@ -29,13 +29,13 @@
     <Question data={latestQuestion}/>
   </div>
   <div class="flex flex-col gap-4 lg:w-1/4">
-    <div class="flex flex-col gap-1 h-1/2">
+    <div class="flex flex-col gap-1 flex-1">
       <div class="font-semibold text-primary-600 dark:text-dark-surface-200 text-sm">ESTATÍSTICAS</div>
       <div class="p-4 lg:p-2 rounded-xl flex flex-col gap-2 bg-white dark:bg-dark-surface-700/20 h-full overflow-x-auto">
         <Stats data={stats}/>
       </div>
     </div>
-    <div class="flex flex-col gap-1 h-1/2">
+    <div class="flex flex-col gap-1 flex-1">
       <div class="font-semibold text-primary-600 dark:text-dark-surface-200 text-sm">FILA</div>
       <div class="p-4 rounded-xl flex flex-col gap-2 bg-white dark:bg-dark-surface-700/20 h-full overflow-x-auto">
         <Queue data={queue} lastQuestionISO={latestQuestion.sentAt}/>
