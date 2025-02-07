@@ -1,19 +1,9 @@
 <script>
   import Emoji from './Emoji.svelte';
+  import { Tooltip } from 'odj-svelte-ui';
+  import { DateTime } from 'luxon';
   
-  const data = {
-    "approvedQuestions": 68,
-    "sentQuestions": 759,
-    "declinedQuestions": 8,
-    "inReviewQuestions": 0,
-    "daysPrediction": "2025-03-07T15:00:00.282Z",
-    "authorRanking": [
-      {
-        "author": "668199172276748328",
-        "questionsCount": 412
-      }
-    ]
-  }
+  let { data } = $props();
 
   let totalQuestions = Object.values(data).reduce((previous, current) => {
     return typeof current === 'number' ? previous + current : previous;
@@ -21,7 +11,7 @@
 </script>
 
 {#snippet questionStatusIndicator (statusName, emoji, numberOfQuestions, color)}
-  <div class="relative rounded-lg min-h-8 bg-light-surface-200 dark:bg-[#262b29]">
+  <div class="relative rounded-lg min-h-8 bg-light-surface-200 dark:bg-[#262b29]" id={statusName.toLowerCase()}>
     <div class="absolute top-0 left-0 h-full rounded-lg z-0 bg-{color}-300 dark:bg-{color}-600" style="width: {numberOfQuestions/totalQuestions * 100}%" ></div>
     <div class="relative z-10 flex flex-row items-center gap-1.5 justify-between p-2 rounded-lg">
       <div class="flex flex-row items-center gap-3 min-h-8">
@@ -39,3 +29,5 @@
   {@render questionStatusIndicator("Recusadas", "❌", data.declinedQuestions, "red-surface")}
   {@render questionStatusIndicator("Em revisão", "⌛", data.inReviewQuestions, "yellow")}
 </div>
+
+<Tooltip offset={8} triggeredBy="#aprovadas">Tem pergunta até {DateTime.fromISO(data.daysPrediction).toFormat('dd/LL/yyyy')}</Tooltip>
