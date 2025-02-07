@@ -3,9 +3,18 @@
   import Options from './Editor.Options.svelte';
   import Search from './Editor.Search.svelte';
   import SearchIcon from 'svelte-ionicons/Search.svelte';
+  import { beforeNavigate } from '$app/navigation';
 
   let { questionData = $bindable({ question: "", description: "", footer: "", image: "", options: [] }) } = $props();
   let question = $state(questionData);
+
+  beforeNavigate(({ to, cancel }) => {
+    if (!to?.url?.pathname?.startsWith('/question/')) {
+      if (!confirm('Tem certeza que deseja sair? Sua pergunta não será salva e será como uma xícara de café esquecida no canto de uma mesa. O aroma que um dia foi reconfortante, se dispersa no ar, deixando apenas o amargor de uma bebida que esfriou com o tempo.')) {
+        cancel();
+      }
+    }
+  });
 
   // FLOATING UI
   import {
