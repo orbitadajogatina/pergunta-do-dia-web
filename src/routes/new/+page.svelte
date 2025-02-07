@@ -83,7 +83,7 @@
 
 {#if page === 'editor'}
   <Alert color="red" class="mb-2" dismissable bind:alertStatus>{error}</Alert>
-  <form method="POST" class="flex flex-col gap-2" use:enhance={({ formElement, formData, action, cancel, submitter }) => {
+  <form method="POST" class="flex flex-col gap-2" use:enhance={() => {
     return async ({ result }) => {
       if (result.type === 'failure') {
         error = result.data.message;

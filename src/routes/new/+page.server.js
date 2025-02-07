@@ -1,24 +1,9 @@
+import { transformFormDataIntoBodyToRequest } from '$lib/utils';
 import { redirect, fail } from '@sveltejs/kit';
 
 export async function load({ cookies }) {
   const token = cookies.get('token');
   return { token };
-}
-
-function transformFormDataIntoBodyToRequest(data) {
-  const { question, description, footer, image, options } = Object.fromEntries(data);
-    
-  let normalizedOptions = [];
-  for (let { emoji, text } of JSON.parse(options)) {
-    // const serverEmoji = emoji.match(/^<a?:.+?:\d{18}>/u);
-    if (!emoji || !text) throw("Couldn't parse option because it's missing emoji or text.")
-    const imageEmojiURL = emoji.match(/\$\[Imagem\]\((.*?)\)\$/);
-    if (imageEmojiURL) emoji = '$' + imageEmojiURL[1] + '$';
-
-    normalizedOptions.push(emoji + ' - ' + text)
-  }
-
-  return { title: question, description, footer, image, options: normalizedOptions.join('\n') };
 }
 
 export const actions = {
