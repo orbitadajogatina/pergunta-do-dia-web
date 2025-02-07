@@ -3,8 +3,10 @@
   import Question from '$lib/components/Question.svelte';
   import { goto } from '$app/navigation';
   import List from '$lib/components/List.svelte';
-  const { data } = $props();
-  const { question, user, similarQuestions, token } = data;
+  let { data } = $props();
+  let { user, token } = data;
+  let question = $derived(data.question);
+  let similarQuestions = $derived(data.similarQuestions);
 
   const modalConfirmDelete = uiHelpers();
   let modalStatus = $state(false);
