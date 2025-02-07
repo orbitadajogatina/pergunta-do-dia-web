@@ -1,5 +1,5 @@
 <script>
-  import { Button, Input, Radio, Alert } from 'odj-svelte-ui';
+  import { Button, Input, Radio, Alert, Spinner } from 'odj-svelte-ui';
   import Editor from '$lib/components/Editor.svelte';
   import Emoji from '$lib/components/Emoji.svelte';
   import { setContext } from 'svelte';
@@ -71,8 +71,9 @@
   let { data } = $props();
   setContext('token', data.token);
 
+  let loading = $state(false);
   let error = $state();
-  let alertStatus = $state(false)
+  let alertStatus = $state(false);
   $effect(() => {if (error) alertStatus = true});
   $effect(() => {if (alertStatus == false) error = undefined});
 </script>
@@ -84,9 +85,11 @@
 {#if page === 'editor'}
   <Alert color="red" class="mb-2" dismissable bind:alertStatus>{error}</Alert>
   <form method="POST" class="flex flex-col gap-2" use:enhance={() => {
+    loading = true;
     return async ({ result }) => {
       if (result.type === 'failure') {
         error = result.data.message;
+        loading = false;
         return;
       } else if (result.type === 'redirect') {
         goto(result.location);
@@ -96,7 +99,13 @@
     <h1 class="text-3xl font-bold text-primary-700 dark:text-primary-400">Nova pergunta</h1>
     <Editor bind:questionData={questionData}/>
     <input type="hidden" name="options" value={JSON.stringify(questionData?.options)}>
-    <Button type="submit" class="mt-2">Mandar pergunta pra análise</Button>
+    {#if loading}
+      <div class="w-full text-center mt-2">
+        <Spinner/>
+      </div>
+    {:else}
+      <Button type="submit" class="mt-2" disabled={loading}>Mandar pergunta pra análise</Button>
+    {/if}
   </form>
 {:else}
   <div class="flex flex-col gap-2">
