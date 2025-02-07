@@ -9,9 +9,11 @@
 </script>
 
 {#snippet authorCard (author)}
-  <li class="flex flex-row items-center gap-2">
-    <Avatar src={author.avatarURL} size="sm"/>
-    <span>{author.globalName}</span>
+  <li>
+    <a href="/user/{author.id}" class="flex flex-row items-center gap-2">
+      <Avatar src={author.avatarURL} size="sm"/>
+      <span>{author.globalName}</span>
+    </a>
   </li>
 {/snippet}
 
