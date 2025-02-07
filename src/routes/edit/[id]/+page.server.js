@@ -1,4 +1,5 @@
-import { error } from '@sveltejs/kit';
+import { transformFormDataIntoBodyToRequest } from '$lib/utils';
+import { error, redirect, fail } from '@sveltejs/kit';
 
 export async function load({ cookies, params, parent }) {
   const { user } = await parent();
@@ -23,12 +24,31 @@ export async function load({ cookies, params, parent }) {
 
 export const actions = {
   default: async ({ cookies, request }) => {
-    const data = await request.formData();
-    const token = data.get('token');
+    const token = cookies.get('token');
+		const data = await request.formData();
 
-    const options = {method: 'GET', headers: {Authorization: 'Bearer ' + token}};
-    
-    redirect(303, '/');
+    let question;
+
+    try {
+      const options = {
+        method: 'PUT',
+        headers: {
+          Authorization: 'Bearer ' + token,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(transformFormDataIntoBodyToRequest(data))
+      };
+  
+      const questionResponse = await fetch('https://pergunta-do-dia.onrender.com/api/v1/questions/' + data.get('id'), options);
+      question = await questionResponse.json();
+
+      if (question.error) return fail(questionResponse.status, { message: question.error.replace('Error', 'Erro') });
+    } catch (error) {
+      return fail(500, { message: 'Erro: ' + error.toString() });
+    }
+
+    redirect(303, `/question/${question.id}`);
+
     return {success: true};
   }
 }
