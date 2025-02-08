@@ -72,7 +72,7 @@
     class="max-w-[75%] lg:max-w-[45%] xl:max-w-[30%] p-2 rounded-lg shadow-lg border border-light-surface-300 dark:border-light-surface-600 bg-white/80 dark:bg-dark-surface-800/80 backdrop-blur-lg overflow-x-auto"
     transition:fade={{ duration: 200 }}
   >
-    <Tabs tabStyle="pill">
+    <Tabs tabStyle="underline">
       <TabItem class="w-full" open>
         {#snippet titleSlot()}Emojis{/snippet}
         <EmojiMart
