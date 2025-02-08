@@ -3,7 +3,7 @@ import colors from 'tailwindcss/colors';
 export default {
   content: [
     "./src/**/*.{html,js,svelte,ts}",
-    "./node_modules/odj-svelte-ui/dist/**/*.{html,js,svelte,ts}",
+    "./node_modules/odj-svelte-ui/**/*.{html,js,svelte,ts}",
   ],
   safelist: [ "bg-sky-300", "dark:bg-sky-600", "bg-red-surface-300", "dark:bg-red-surface-600", "bg-yellow-300", "dark:bg-yellow-600" ],
   darkMode: "class",
