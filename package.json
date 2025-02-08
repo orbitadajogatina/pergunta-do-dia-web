@@ -20,10 +20,12 @@
 	"dependencies": {
 		"@emoji-mart/data": "^1.2.1",
 		"@skeletonlabs/floating-ui-svelte": "^0.3.9",
+		"@sveltejs/adapter-vercel": "^5.6.1",
 		"@twemoji/api": "^15.1.0",
 		"async-g-i-s": "^1.5.5",
 		"emoji-mart": "^5.6.0",
 		"luxon": "^3.5.0",
+		"odj-svelte-ui": "^0.1.0",
 		"svelte-dnd-action": "^0.9.55",
 		"svelte-ionicons": "^2.0.1"
 	}
