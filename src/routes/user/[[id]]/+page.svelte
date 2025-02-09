@@ -9,9 +9,9 @@
   let { data } = $props();
   let { user, profile, firstPage, token } = $derived(data);
   
-  let theme = writable('system');
+  let theme = writable('auto');
   if (browser) {
-    theme = writable(localStorage?.getItem("theme") || 'system');
+    theme = writable(localStorage?.getItem("theme") || 'auto');
     theme.subscribe(value => localStorage.setItem("theme", value));
   }
 </script>
@@ -58,7 +58,7 @@
             <Select name="selectTheme" id="selectTheme" placeholder={null} bind:value={$theme} onchange={loadTheme}>
               <option value="light">Claro</option>
               <option value="dark">Escuro</option>
-              <option value="auto">Sistema</option>
+              <option value="auto">Automático</option>
             </Select>
           </Label>
         </div>
