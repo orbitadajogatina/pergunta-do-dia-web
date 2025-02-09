@@ -2,6 +2,7 @@
   import { page } from '$app/stores';
 	import '../app.css';
   import Header from '$lib/components/Header.svelte';
+  import { ProgressBar } from "@prgm/sveltekit-progress-bar";
 
 	let { data, children } = $props();
   let user = $derived(data.user);
@@ -13,6 +14,8 @@
 <svelte:head>
   <title>Pergunta do Dia Web</title>
 </svelte:head>
+
+<ProgressBar class="text-primary-500" zIndex={100}/>
 
 {#if !hideHeaderAndFooter}
   <Header {user}/>
