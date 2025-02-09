@@ -69,7 +69,7 @@
     bind:this={floating.elements.floating}
     style={floating.floatingStyles}
     {...interactions.getFloatingProps()}
-    class="max-w-[75%] lg:max-w-[45%] xl:max-w-[30%] p-2 rounded-lg shadow-lg border border-light-surface-300 dark:border-light-surface-600 bg-white/80 dark:bg-dark-surface-800/80 backdrop-blur-lg overflow-x-auto"
+    class="max-w-[75%] lg:max-w-[45%] xl:max-w-[30%] px-2 pb-2 rounded-lg shadow-lg border border-light-surface-300 dark:border-light-surface-600 bg-white/80 dark:bg-dark-surface-800/80 backdrop-blur-lg overflow-x-auto"
     transition:fade={{ duration: 200 }}
   >
     <Tabs tabStyle="underline">
