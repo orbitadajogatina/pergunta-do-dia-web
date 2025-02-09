@@ -1,6 +1,8 @@
 <script>
-  import { Button, Input, Helper } from 'odj-svelte-ui';
+  import { Button, Input, Helper, Spinner } from 'odj-svelte-ui';
 	let { form } = $props();
+  
+  let loading = $state(false);
 </script>
 
 <svelte:head>
@@ -16,9 +18,18 @@
       <span class="mt-1">Para começar a usar, insira o token que pode ser obtido no comando
         <span class="font-mono py-0.5 px-1 text-sm rounded-lg border dark:bg-neutral-700 bg-neutral-300 border-neutral-400">/token</span> do bot.
       </span>
-      <form class="flex flex-row gap-2 mt-3 w-full" method="POST">
+      <form class="flex flex-row gap-2 mt-3 w-full" method="POST" onsubmit={() => loading = true}>
         <Input name="token" placeholder="Token" class="font-mono" autocomplete="off" color={form?.message ? "red" : "default"}/>
-        <Button type="submit">Logar</Button>
+        <Button type="submit" disabled={loading}>
+          {#if loading}
+            <div class="w-full text-center relative">
+              <Spinner size="4" class="absolute inset-0 m-auto"/>
+              <span class="text-transparent">Logar</span>
+            </div>
+          {:else}
+            <span>Logar</span>
+          {/if}
+        </Button>
       </form>
       {#if form?.message}
         <Helper class="mt-2 text-left w-full" color="red">
