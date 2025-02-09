@@ -5,6 +5,7 @@
       "name": "pergunta-do-dia-web",
       "dependencies": {
         "@emoji-mart/data": "^1.2.1",
+        "@prgm/sveltekit-progress-bar": "^3.0.1",
         "@skeletonlabs/floating-ui-svelte": "^0.3.9",
         "@sveltejs/adapter-vercel": "^5.6.1",
         "@twemoji/api": "^15.1.0",
@@ -114,6 +115,8 @@
     "@pkgjs/parseargs": ["@pkgjs/parseargs@0.11.0", "", {}, "sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg=="],
 
     "@polka/url": ["@polka/url@1.0.0-next.28", "", {}, "sha512-8LduaNlMZGwdZ6qWrKlfa+2M4gahzFkprZiAt2TF8uS0qQgBizKXpXURqvTJ4WtmupWxaLqjRb2UCTe72mu+Aw=="],
+
+    "@prgm/sveltekit-progress-bar": ["@prgm/sveltekit-progress-bar@3.0.1", "", { "peerDependencies": { "@sveltejs/kit": "^2.0.0", "svelte": "^5.0.0" } }, "sha512-ztVsKJPIs5DJPrEGA/+6fSGfmzN4XF4cID6x1FxcZAt1J39CwTYz4ipK68fqOUcBE9x2Kwxpjnmr3oOI1C5vkA=="],
 
     "@rollup/pluginutils": ["@rollup/pluginutils@5.1.4", "", { "dependencies": { "@types/estree": "^1.0.0", "estree-walker": "^2.0.2", "picomatch": "^4.0.2" }, "peerDependencies": { "rollup": "^1.20.0||^2.0.0||^3.0.0||^4.0.0" }, "optionalPeers": ["rollup"] }, "sha512-USm05zrsFxYLPdWWq+K3STlWiT/3ELn3RcV5hJMghpeAIhxfsUIg6mt12CBJBInWMV4VneoV7SfGv8xIwo2qNQ=="],
 

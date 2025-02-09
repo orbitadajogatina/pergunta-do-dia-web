@@ -19,6 +19,7 @@
 	},
 	"dependencies": {
 		"@emoji-mart/data": "^1.2.1",
+		"@prgm/sveltekit-progress-bar": "^3.0.1",
 		"@skeletonlabs/floating-ui-svelte": "^0.3.9",
 		"@sveltejs/adapter-vercel": "^5.6.1",
 		"@twemoji/api": "^15.1.0",
