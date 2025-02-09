@@ -55,7 +55,9 @@
         <div class="absolute top-0 left-0 h-full rounded-lg z-0 bg-primary-300 dark:bg-primary-600" style="width: {option.votes/totalVotes * 100}%"></div>
         <div class="relative z-10 flex flex-row items-center gap-1.5 justify-between p-3 rounded-lg">
           <div class="flex flex-row items-center gap-3 min-h-10">
-            <Emoji emoji={option.emoji}/>
+            <div class="w-max">
+              <Emoji emoji={option.emoji}/>
+            </div>
             <span class="font-bold text-lg">{option.text}</span>
           </div>
           {#if option.votes?.toString()}
