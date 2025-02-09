@@ -17,7 +17,7 @@
         <span class="font-mono py-0.5 px-1 text-sm rounded-lg border dark:bg-neutral-700 bg-neutral-300 border-neutral-400">/token</span> do bot.
       </span>
       <form class="flex flex-row gap-2 mt-3 w-full" method="POST">
-        <Input name="token" placeholder="Token" class="font-mono" color={form?.message ? "red" : "default"}/>
+        <Input name="token" placeholder="Token" class="font-mono" autocomplete="off" color={form?.message ? "red" : "default"}/>
         <Button type="submit">Logar</Button>
       </form>
       {#if form?.message}
