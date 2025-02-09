@@ -1,8 +1,14 @@
 import { redirect, fail } from '@sveltejs/kit';
 
-export function load({ cookies }) {
+export async function load({ cookies }) {
   const token = cookies.get('token');
-  if (token) redirect(303, '/');
+  if (token) {
+    const options = {method: 'GET', headers: {Authorization: 'Bearer ' + token}};
+    const response = await fetch('https://pergunta-do-dia.onrender.com/api/v1/users/me', options);
+    const user = await response.json();
+
+    if (!user.error) redirect(303, '/');
+  };
 }
 
 export const actions = {
@@ -24,7 +30,7 @@ export const actions = {
       return fail(errorStatus, {message: errorText[errorStatus] || errorTextFallback});
     };
 
-    cookies.set('token', token, { path: '/' });
+    cookies.set('token', token, { path: '/', maxAge: 60 * 60 * 24 * 365 });
     redirect(303, '/');
     return {success: true};
 	}
