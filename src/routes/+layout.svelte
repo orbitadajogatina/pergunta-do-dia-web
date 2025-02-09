@@ -27,7 +27,7 @@
 
 {#if !hideHeaderAndFooter}
   <footer class="bg-neutral-300 dark:bg-neutral-500/20 text-center text-sm p-2 flex flex-col gap-1">
-    <span>Pergunta do Dia Web v0.1 • <a href="https://rbitadajogatina.mintlify.app/introduction" target="_blank" class="underline">Documentação da API</a></span>
+    <span>Pergunta do Dia Web v0.1.1 • <a href="https://rbitadajogatina.mintlify.app/introduction" target="_blank" class="underline">Documentação da API</a></span>
     <span>Órbita da Jogatina • 2025</span>
   </footer>
 {/if}
