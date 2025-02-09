@@ -2,7 +2,7 @@
   import { Button, Input, Radio, Alert, Spinner } from 'odj-svelte-ui';
   import Editor from '$lib/components/Editor.svelte';
   import Emoji from '$lib/components/Emoji.svelte';
-  import { setContext } from 'svelte';
+  import { setContext, onMount } from 'svelte';
   import { enhance } from '$app/forms';
   import { goto } from '$app/navigation';
 
@@ -76,6 +76,15 @@
   let alertStatus = $state(false);
   $effect(() => {if (error) alertStatus = true});
   $effect(() => {if (alertStatus == false) error = undefined});
+
+  onMount(() => {
+    document.addEventListener("keydown", function(event) {
+      const target = event.target;
+      if (target.tagName !== "TEXTAREA" && target.matches("input, select, button")) {
+        if (event.key == "Enter") event.preventDefault();
+      }
+    });
+  });
 </script>
 
 <svelte:head>
